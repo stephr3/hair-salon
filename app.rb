@@ -61,7 +61,7 @@ patch('/stylists/:id') do
 end
 
 delete('/stylists/:id') do
-  @stylist = Stylist.find_by_id(params.fetch('id').to_i())
+  @stylist = Stylist.find(params.fetch('id').to_i())
   @stylist.delete()
   @stylists = Stylist.all()
   erb(:stylists)
@@ -111,7 +111,7 @@ patch('/clients/:id') do
 end
 
 delete('/clients/:id') do
-  @client = Client.find_by_id(params.fetch('id').to_i())
+  @client = Client.find(params.fetch('id').to_i())
   @client.delete()
   @clients = Client.all()
   erb(:clients)
