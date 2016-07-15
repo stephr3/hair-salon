@@ -123,3 +123,20 @@ describe('delete a client path', {:type => :feature}) do
     expect(page).to have_no_content("Billy Madison")
   end
 end
+
+# ADD CLIENT TO A STYLIST
+
+describe('select a client path', {:type => :feature}) do
+  it "allows the salon owner to select a client to add to a stylist's client roster" do
+    client = Client.new({:name => "Billy Madison", :phone => "206-345-1273", :stylist_id => nil, :id => nil})
+    client.save()
+    stylist = Stylist.new({:name => "Susan Sontag", :phone => "360-134-7483", :specialty => "color", :id => nil})
+    stylist.save()
+    visit '/stylists'
+    click_link 'Susan Sontag'
+    click_link 'Update Information'
+    select('Billy Madison', :from => 'client_id')
+    click_button 'Update'
+    expect(page).to have_content("Billy Madison")
+  end
+end
