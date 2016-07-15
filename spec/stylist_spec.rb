@@ -30,8 +30,8 @@ describe(Stylist) do
 
   describe("#==") do
     it("confirms that it is the same stylist if the stylist has the same name and id") do
-      stylist1 = Stylist.new({:name => "Susan Sontag", :phone => "360-134-7483", :specialty => "color", :id => nil})
-      stylist2 = Stylist.new({:name => "Susan Sontag", :phone => "360-134-7483", :specialty => "color", :id => nil})
+      stylist1 = Stylist.new({:name => "Susan Sontag", :phone => "360-134-7483", :specialty => "color", :id => 1})
+      stylist2 = Stylist.new({:name => "Susan Sontag", :phone => "360-134-7483", :specialty => "color", :id => 1})
       expect(stylist1).to(eq(stylist2))
     end
   end
@@ -63,7 +63,7 @@ describe(Stylist) do
   end
 
   describe("#update") do
-    it "lets the salon owner update the attributes of the stylist" do
+    it "lets the salon owner update the attributes of a stylist" do
       stylist = Stylist.new({:name => "Susan Sontag", :phone => "360-134-7483", :specialty => "color", :id => nil})
       stylist.save()
       stylist.update({:phone => "971-356-9137"})
@@ -76,7 +76,7 @@ describe(Stylist) do
     it "lets the salon owner delete a stylist from the database" do
       stylist1 = Stylist.new({:name => "Susan Sontag", :phone => "360-134-7483", :specialty => "color", :id => nil})
       stylist1.save()
-      stylist2 = Stylist.new({:name => "Susan Sontag", :phone => "360-134-7483", :specialty => "color", :id => nil})
+      stylist2 = Stylist.new({:name => "Adam Lambert", :phone => "971-235-8217", :specialty => "fades", :id => nil})
       stylist2.save()
       stylist1.delete()
       expect(Stylist.all()).to(eq([stylist2]))
