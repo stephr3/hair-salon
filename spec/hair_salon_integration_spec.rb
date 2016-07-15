@@ -51,3 +51,15 @@ describe('update a stylist path', {:type => :feature}) do
     expect(page).to have_content('360-458-7633')
   end
 end
+
+describe('delete a stylist path', {:type => :feature}) do
+  it "allows the salon owner to delete a stylist" do
+    stylist = Stylist.new({:name => "Susan Sontag", :phone => "360-134-7483", :specialty => "color", :id => nil})
+    stylist.save()
+    visit '/stylists'
+    click_link 'Susan Sontag'
+    click_link 'Update Information'
+    click_button 'Delete Stylist Record'
+    expect(page).to have_no_content("Susan Sontag")
+  end
+end

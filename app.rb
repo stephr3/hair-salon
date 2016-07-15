@@ -58,3 +58,10 @@ patch('/stylists/:id') do
   @stylist.update({:name => name, :phone => phone, :specialty => specialty})
   erb(:stylist)
 end
+
+delete('/stylists/:id') do
+  @stylist = Stylist.find_by_id(params.fetch('id').to_i())
+  @stylist.delete()
+  @stylists = Stylist.all()
+  erb(:stylists)
+end
