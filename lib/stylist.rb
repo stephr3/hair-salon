@@ -30,4 +30,14 @@ class Stylist
     result = DB.exec("INSERT INTO stylists (name, phone, specialty) VALUES ('#{@name}', '#{@phone}', '#{@specialty}') RETURNING id;")
     @id = result.first().fetch("id").to_i()
   end
+
+  define_singleton_method(:find) do |id_number|
+    found_stylist = nil
+    Stylist.all().each() do |stylist|
+      if stylist.id().==(id_number)
+        found_stylist = stylist
+      end
+    end
+    found_stylist
+  end
 end
