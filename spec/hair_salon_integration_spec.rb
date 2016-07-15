@@ -20,4 +20,11 @@ describe('add a stylist path', {:type => :feature}) do
     click_button('Add Stylist')
     expect(page).to have_content("Stylist Roster")
   end
+
+  it "allows the salon owner to view a list of stylists" do
+    stylist = Stylist.new({:name => "Susan Sontag", :phone => "360-134-7483", :specialty => "color", :id => nil})
+    stylist.save()
+    visit '/stylists'
+    expect(page).to have_content("Susan Sontag")
+  end
 end

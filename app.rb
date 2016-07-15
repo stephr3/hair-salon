@@ -25,3 +25,8 @@ post('/stylists') do
   @stylists = Stylist.all()
   erb(:stylists)
 end
+
+get('/stylists') do
+  @stylists = Stylist.all()
+  erb(:stylists)
+end
