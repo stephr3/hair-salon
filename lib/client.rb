@@ -5,7 +5,7 @@ class Client
     @name = attributes.fetch(:name)
     @phone = attributes.fetch(:phone)
     @stylist_id = attributes.fetch(:stylist_id)
-    @id = attributes.fetch(:id)
+    @id = attributes[:id]
   end
 
   define_singleton_method(:all) do
@@ -26,7 +26,12 @@ class Client
   end
 
   define_method(:save) do
-    result = DB.exec("INSERT INTO clients (name, phone, stylist_id) VALUES ('#{@name}', '#{@phone}', NULL) RETURNING id;")
+    if @stylist_id
+      stylist_id = @stylist_id
+    else
+      stylist_id = 'Null'
+    end
+    result = DB.exec("INSERT INTO clients (name, phone, stylist_id) VALUES ('#{@name}', '#{@phone}', #{stylist_id}) RETURNING id;")
     @id = result.first().fetch("id").to_i()
   end
 
