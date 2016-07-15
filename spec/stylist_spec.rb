@@ -7,4 +7,10 @@ describe(Stylist) do
       expect(stylist.name()).to(eq("Susan Sontag"))
     end
   end
+
+  describe(".all") do
+    it("initializes with an empty array") do
+      expect(Stylist.all()).to(eq([]))
+    end
+  end
 end
