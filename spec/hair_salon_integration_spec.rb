@@ -140,3 +140,20 @@ describe('select a client path', {:type => :feature}) do
     expect(page).to have_content("Billy Madison")
   end
 end
+
+describe('view stylist path', {:type => :feature}) do
+  it "allows the salon owner to view which stylist a client uses" do
+    client = Client.new({:name => "Billy Madison", :phone => "206-345-1273", :stylist_id => nil, :id => nil})
+    client.save()
+    stylist = Stylist.new({:name => "Susan Sontag", :phone => "360-134-7483", :specialty => "color", :id => nil})
+    stylist.save()
+    visit '/stylists'
+    click_link 'Susan Sontag'
+    click_link 'Update Information'
+    select('Billy Madison', :from => 'client_id')
+    click_button 'Update'
+    visit '/clients'
+    click_link 'Billy Madison'
+    expect(page).to have_content('Susan Sontag')
+  end
+end
