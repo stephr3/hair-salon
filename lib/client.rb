@@ -4,7 +4,7 @@ class Client
   define_method(:initialize) do |attributes|
     @name = attributes.fetch(:name)
     @phone = attributes.fetch(:phone)
-    @stylist_id = attributes.fetch(:stylist_id)
+    @stylist_id = attributes[:stylist_id]
     @id = attributes[:id]
   end
 
@@ -49,8 +49,14 @@ class Client
     @name = attributes.fetch(:name, @name)
     @phone = attributes.fetch(:phone, @phone)
     @id = self.id()
+    if attributes.has_key?(:stylist_id)
+      @stylist_id = attributes.fetch(:stylist_id, @stylist_id)
+    else
+      stylist_id = 'Null'
+    end  
     DB.exec("UPDATE clients SET name = '#{@name}' WHERE id = #{@id};")
     DB.exec("UPDATE clients SET phone = '#{@phone}' WHERE id = #{@id};")
+    DB.exec("UPDATE clients SET stylist_id = #{@stylist_id} WHERE id = #{@id};")
   end
 
   define_method(:delete) do

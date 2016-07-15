@@ -34,16 +34,20 @@ end
 
 get('/stylists/:id') do
   @stylist = Stylist.find(params.fetch("id").to_i())
+  @clients = Client.all()
   erb(:stylist)
 end
 
 get('/stylists/:id/edit') do
   @stylist = Stylist.find(params.fetch("id").to_i())
+  @clients = Client.all()
   erb(:update_stylist_form)
 end
 
 patch('/stylists/:id') do
-  @stylist = Stylist.find(params.fetch("id").to_i())
+  @clients = Client.all()
+  stylist_id = params.fetch('id').to_i()
+  @stylist = Stylist.find(stylist_id)
   name = params.fetch('name')
   if name.==('')
     name = @stylist.name()
@@ -57,6 +61,16 @@ patch('/stylists/:id') do
     specialty = @stylist.specialty()
   end
   @stylist.update({:name => name, :phone => phone, :specialty => specialty})
+
+  if @clients.any?()
+    client_id = params.fetch('client_id').to_i()
+    if client_id.!=(0)
+      client = Client.find(client_id)
+      name = client.name()
+      phone = client.phone()
+      client.update({:name => name, :phone => phone, :stylist_id => stylist_id})
+    end
+  end
   erb(:stylist)
 end
 
@@ -64,6 +78,7 @@ delete('/stylists/:id') do
   @stylist = Stylist.find(params.fetch('id').to_i())
   @stylist.delete()
   @stylists = Stylist.all()
+  @clients = @stylist.clients()
   erb(:stylists)
 end
 
@@ -88,6 +103,7 @@ end
 
 get('/clients/:id') do
   @client = Client.find(params.fetch("id").to_i())
+  @stylist = Stylist.find(@client.stylist_id().to_i())
   erb(:client)
 end
 

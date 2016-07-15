@@ -2,6 +2,9 @@
 <ul>
   <li>Name: <%= @client.name() %></li>
   <li>Phone number: <%= @client.phone() %></li>
+  <% if @stylist %>
+  <li>Stylist: <%= @stylist.name() %></li>
+  <% end %>
 </ul>
 <ul>
   <li><a href="/clients/<%= @client.id() %>/edit">Update Information</a></li>

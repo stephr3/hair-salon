@@ -1,5 +1,5 @@
 <h1>Update Information for <%= @stylist.name() %></h1>
-
+<br>
 <form action="/stylists/<%= @stylist.id() %>" method="post">
   <input name="_method" type="hidden" value="patch">
   <div class="form-group">
@@ -14,6 +14,19 @@
     <label for="specialty">Stylist specialty: </label>
     <input type="text" name="specialty" id="specialty">
   </div>
+
+  <% if @clients.any?() %>
+  <div class="form-group">
+    <label for="client_id">Select a Client</label>
+    <select id='client_id' name='client_id' type='text'>
+      <option value=""></option>
+      <% @clients.each() do |client| %>
+        <option value="<%= client.id()%>"> <%= client.name() %> </option>
+      <% end %>
+    </select>
+  </div>
+  <% end %>
+
   <button type="submit">Update</button>
 </form>
 <br>

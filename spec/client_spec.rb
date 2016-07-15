@@ -66,9 +66,10 @@ describe(Client) do
     it "lets the salon owner update the attributes of a client" do
       client = Client.new({:name => "Billy Madison", :phone => "206-345-1273", :stylist_id => nil, :id => nil})
       client.save()
-      client.update({:phone => "502-275-8730"})
+      client.update({:phone => "502-275-8730", :stylist_id => 2})
       expect(client.name()).to(eq("Billy Madison"))
       expect(client.phone()).to(eq("502-275-8730"))
+      expect(client.stylist_id).to(eq(2))
     end
   end
 
