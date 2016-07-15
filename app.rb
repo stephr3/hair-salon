@@ -12,6 +12,7 @@ get('/') do
   erb(:index)
 end
 
+# STYLIST CRUD
 get('/stylists/new') do
   erb(:stylist_form)
 end
@@ -64,4 +65,54 @@ delete('/stylists/:id') do
   @stylist.delete()
   @stylists = Stylist.all()
   erb(:stylists)
+end
+
+# CLIENT CRUD
+get('/clients/new') do
+  erb(:client_form)
+end
+
+post('/clients') do
+  name = params.fetch('name')
+  phone = params.fetch('phone')
+  client = Client.new({:name => name, :phone => phone, :stylist_id => nil, :id => nil})
+  client.save()
+  @clients = Client.all()
+  erb(:clients)
+end
+
+get('/clients') do
+  @clients = Client.all()
+  erb(:clients)
+end
+
+get('/clients/:id') do
+  @client = Client.find(params.fetch("id").to_i())
+  erb(:client)
+end
+
+get('/clients/:id/edit') do
+  @client = Client.find(params.fetch("id").to_i())
+  erb(:update_client_form)
+end
+
+patch('/clients/:id') do
+  @client = Client.find(params.fetch("id").to_i())
+  name = params.fetch('name')
+  if name.==('')
+    name = @client.name()
+  end
+  phone = params.fetch('phone')
+  if phone.==('')
+    phone = @client.phone()
+  end
+  @client.update({:name => name, :phone => phone})
+  erb(:client)
+end
+
+delete('/clients/:id') do
+  @client = Client.find_by_id(params.fetch('id').to_i())
+  @client.delete()
+  @clients = Client.all()
+  erb(:clients)
 end

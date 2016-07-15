@@ -1,0 +1,17 @@
+<h1>Client Roster</h1>
+
+<%if @clients.any?()%>
+<ul>
+  <% @clients.each() do |client| %>
+  <li><a href="/clients/<%= client.id() %>"><%= client.name() %></a></li>
+  <%end%>
+</ul>
+<%else%>
+<p>
+  You have not added any clients yet.
+</p>
+<%end%>
+<ul>
+  <li><a href="/clients/new">Add a Client</a></li>
+  <li><a href="/">Home</a></li>
+</ul>

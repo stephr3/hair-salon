@@ -35,6 +35,16 @@ class Client
     @id = result.first().fetch("id").to_i()
   end
 
+  define_singleton_method(:find) do |id_number|
+    found_client = nil
+    Client.all().each() do |client|
+      if client.id().==(id_number)
+        found_client = client
+      end
+    end
+    found_client
+  end
+
   define_method(:update) do |attributes|
     @name = attributes.fetch(:name, @name)
     @phone = attributes.fetch(:phone, @phone)

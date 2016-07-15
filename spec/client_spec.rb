@@ -52,6 +52,16 @@ describe(Client) do
     end
   end
 
+  describe(".find") do
+    it("returns a client by their id") do
+      client1 = Client.new({:name => "Billy Madison", :phone => "206-345-1273", :stylist_id => nil, :id => nil})
+      client1.save()
+      client2 = Client.new({:name => "Sissy Spacek", :phone => "815-398-2198", :stylist_id => nil, :id => nil})
+      client2.save()
+      expect(Client.find(client2.id())).to(eq(client2))
+    end
+  end
+
   describe("#update") do
     it "lets the salon owner update the attributes of a client" do
       client = Client.new({:name => "Billy Madison", :phone => "206-345-1273", :stylist_id => nil, :id => nil})
