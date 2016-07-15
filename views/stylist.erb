@@ -4,5 +4,7 @@
   <li>Phone number: <%= @stylist.phone() %></li>
   <li>Specialty: <%= @stylist.specialty() %></li>
 </ul>
-
-<a href="/stylists">Back to All Stylists</a>
+<ul>
+  <li><a href="/stylists/<%= @stylist.id() %>/edit">Update Information</a></li>
+  <li><a href="/stylists">Back to All Stylists</a></li>
+</ul>

@@ -38,3 +38,16 @@ describe('view a stylist path', {:type => :feature}) do
     expect(page).to have_content("Susan Sontag")
   end
 end
+
+describe('update a stylist path', {:type => :feature}) do
+  it "allows the owner to update information about a stylist" do
+    stylist = Stylist.new({:name => "Susan Sontag", :phone => "360-134-7483", :specialty => "color", :id => nil})
+    stylist.save()
+    visit '/stylists'
+    click_link 'Susan Sontag'
+    click_link 'Update Information'
+    fill_in('phone', :with => '360-458-7633')
+    click_button 'Update'
+    expect(page).to have_content('360-458-7633')
+  end
+end

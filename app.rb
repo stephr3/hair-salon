@@ -35,3 +35,26 @@ get('/stylists/:id') do
   @stylist = Stylist.find(params.fetch("id").to_i())
   erb(:stylist)
 end
+
+get('/stylists/:id/edit') do
+  @stylist = Stylist.find(params.fetch("id").to_i())
+  erb(:update_stylist_form)
+end
+
+patch('/stylists/:id') do
+  @stylist = Stylist.find(params.fetch("id").to_i())
+  name = params.fetch('name')
+  if name.==('')
+    name = @stylist.name()
+  end
+  phone = params.fetch('phone')
+  if phone.==('')
+    phone = @stylist.phone()
+  end
+  specialty = params.fetch('specialty')
+  if specialty.==('')
+    specialty = @stylist.specialty()
+  end
+  @stylist.update({:name => name, :phone => phone, :specialty => specialty})
+  erb(:stylist)
+end
