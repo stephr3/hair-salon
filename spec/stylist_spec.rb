@@ -61,4 +61,14 @@ describe(Stylist) do
       expect(Stylist.find(stylist2.id())).to(eq(stylist2))
     end
   end
+
+  describe("#update") do
+    it "lets the salon owner update the attributes of the stylist" do
+      stylist = Stylist.new({:name => "Susan Sontag", :phone => "360-134-7483", :specialty => "color", :id => nil})
+      stylist.save()
+      stylist.update({:phone => "971-356-9137"})
+      expect(stylist.name()).to(eq("Susan Sontag"))
+      expect(stylist.phone()).to(eq("971-356-9137"))
+    end
+  end
 end
