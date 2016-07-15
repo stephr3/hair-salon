@@ -50,4 +50,8 @@ class Stylist
     DB.exec("UPDATE stylists SET phone = '#{@phone}' WHERE id = #{@id};")
     DB.exec("UPDATE stylists SET specialty = '#{@specialty}' WHERE id = #{@id};")
   end
+
+  define_method(:delete) do
+    DB.exec("DELETE FROM stylists WHERE id = #{self.id()};")
+  end
 end

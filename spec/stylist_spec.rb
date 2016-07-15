@@ -71,4 +71,15 @@ describe(Stylist) do
       expect(stylist.phone()).to(eq("971-356-9137"))
     end
   end
+
+  describe("#delete") do
+    it "lets the salon owner delete a stylist from the database" do
+      stylist1 = Stylist.new({:name => "Susan Sontag", :phone => "360-134-7483", :specialty => "color", :id => nil})
+      stylist1.save()
+      stylist2 = Stylist.new({:name => "Susan Sontag", :phone => "360-134-7483", :specialty => "color", :id => nil})
+      stylist2.save()
+      stylist1.delete()
+      expect(Stylist.all()).to(eq([stylist2]))
+    end
+  end
 end
