@@ -43,4 +43,12 @@ describe(Stylist) do
       expect(Stylist.all()).to(eq([stylist]))
     end
   end
+
+  describe("#id") do
+    it("returns a stylist's id") do
+      stylist = Stylist.new({:name => "Susan Sontag", :phone => "360-134-7483", :specialty => "color", :id => nil})
+      stylist.save()
+      expect(stylist.id().class()).to(eq(Fixnum))
+    end
+  end
 end
