@@ -1,4 +1,5 @@
 class Client
+  
   attr_reader(:name, :phone, :stylist_id, :id)
 
   define_method(:initialize) do |attributes|
@@ -53,7 +54,7 @@ class Client
       @stylist_id = attributes.fetch(:stylist_id, @stylist_id)
     else
       stylist_id = 'Null'
-    end  
+    end
     DB.exec("UPDATE clients SET name = '#{@name}' WHERE id = #{@id};")
     DB.exec("UPDATE clients SET phone = '#{@phone}' WHERE id = #{@id};")
     DB.exec("UPDATE clients SET stylist_id = #{@stylist_id} WHERE id = #{@id};")

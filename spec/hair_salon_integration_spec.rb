@@ -1,11 +1,9 @@
 require('spec_helper.rb')
 require('capybara/rspec')
 require('./app')
-require('launchy')
 Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 
-# STYLIST CRUD
 describe('add a stylist path', {:type => :feature}) do
   it('gets to the add a stylist page') do
     visit '/'
@@ -65,7 +63,6 @@ describe('delete a stylist path', {:type => :feature}) do
   end
 end
 
-# CLIENT CRUD
 describe('add a client path', {:type => :feature}) do
   it('gets to the add a client page') do
     visit '/'
@@ -123,8 +120,6 @@ describe('delete a client path', {:type => :feature}) do
     expect(page).to have_no_content("Billy Madison")
   end
 end
-
-# ADD CLIENT TO A STYLIST
 
 describe('select a client path', {:type => :feature}) do
   it "allows the salon owner to select a client to add to a stylist's client roster" do

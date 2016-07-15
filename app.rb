@@ -4,7 +4,6 @@ also_reload("lib/**/*.rb")
 require("./lib/client")
 require("./lib/stylist")
 require("pg")
-require("pry")
 
 DB = PG.connect({:dbname => 'hair_salon_test'})
 
@@ -12,7 +11,6 @@ get('/') do
   erb(:index)
 end
 
-# STYLIST CRUD
 get('/stylists/new') do
   erb(:stylist_form)
 end
