@@ -1,17 +1,18 @@
-<h1>Stylist Roster</h1>
+<div class="main-content">
+  <h1>Stylist Roster</h1>
 
-<%if @stylists.any?()%>
-<ul>
-  <% @stylists.each() do |stylist| %>
-  <li><a href="/stylists/<%= stylist.id() %>"><%= stylist.name() %></a></li>
+  <%if @stylists.any?()%>
+  <ul>
+    <% @stylists.each() do |stylist| %>
+    <li><a href="/stylists/<%= stylist.id() %>"><%= stylist.name() %></a></li>
+    <%end%>
+  </ul>
+  <%else%>
+  <p>
+    You have not added any stylists yet.
+  </p>
   <%end%>
-</ul>
-<%else%>
-<p>
-  You have not added any stylists yet.
-</p>
-<%end%>
-<ul>  
-  <li><a href="/stylists/new">Add a Stylist</a></li>
-  <li><a href="/">Home</a></li>
-</ul>
+<a href="/stylists/new" class = "inline">Add a Stylist</a></li>
+<a href="/" class = "inline">Home</a></li>
+
+</div>

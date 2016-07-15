@@ -1,25 +1,27 @@
-<h1><%= @stylist.name() %></h1>
-<ul>
-  <li>Name: <%= @stylist.name() %></li>
-  <li>Phone number: <%= @stylist.phone() %></li>
-  <li>Specialty: <%= @stylist.specialty() %></li>
-</ul>
+<div class="main-content">
+  <h1><%= @stylist.name() %></h1>
+  <ul>
+    <li>Name: <%= @stylist.name() %></li>
+    <li>Phone number: <%= @stylist.phone() %></li>
+    <li>Specialty: <%= @stylist.specialty() %></li>
+  </ul>
 
-<h3>Clients:</h3>
-<% if @stylist.clients().any?() %>
-  <h5>Here are <%= @stylist.name() %>'s clients:</h5>
+  <h3>Clients:</h3>
+  <% if @stylist.clients().any?() %>
+    <h5>Here are <%= @stylist.name() %>'s clients:</h5>
+
+    <ul>
+      <% @stylist.clients().each() do |client| %>
+        <li><%= client.name() %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>This stylist has no clients yet.</p>
+  <% end %>
+
 
   <ul>
-    <% @stylist.clients().each() do |client| %>
-      <li><%= client.name() %></li>
-    <% end %>
+    <li><a href="/stylists/<%= @stylist.id() %>/edit">Update Information</a></li>
+    <li><a href="/stylists">Back to All Stylists</a></li>
   </ul>
-<% else %>
-  <p>This stylist has no clients yet.</p>
-<% end %>
-
-
-<ul>
-  <li><a href="/stylists/<%= @stylist.id() %>/edit">Update Information</a></li>
-  <li><a href="/stylists">Back to All Stylists</a></li>
-</ul>
+</div>

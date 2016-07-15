@@ -1,12 +1,14 @@
-<h1><%= @client.name() %></h1>
-<ul>
-  <li>Name: <%= @client.name() %></li>
-  <li>Phone number: <%= @client.phone() %></li>
-  <% if @stylist %>
-  <li>Stylist: <%= @stylist.name() %></li>
-  <% end %>
-</ul>
-<ul>
-  <li><a href="/clients/<%= @client.id() %>/edit">Update Information</a></li>
-  <li><a href="/clients">Back to All Clients</a></li>
-</ul>
+<div class="main-content">
+  <h1><%= @client.name() %></h1>
+  <ul>
+    <li>Name: <%= @client.name() %></li>
+    <li>Phone number: <%= @client.phone() %></li>
+    <% if @stylist %>
+    <li>Stylist: <%= @stylist.name() %></li>
+    <% end %>
+  </ul>
+  <ul>
+    <li><a href="/clients/<%= @client.id() %>/edit">Update Information</a></li>
+    <li><a href="/clients">Back to All Clients</a></li>
+  </ul>
+</div>
