@@ -1,4 +1,5 @@
 # :haircut::haircut::haircut: _Stylish Salon_ :haircut::haircut::haircut:
+## *By Stephanie Gurung*
 
 ##### _With this application, a salon owner will be able to view, add, update, and delete clients and stylists, as well as assign clients to stylists._
 
