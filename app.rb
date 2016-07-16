@@ -80,7 +80,6 @@ delete('/stylists/:id') do
   erb(:stylists)
 end
 
-# CLIENT CRUD
 get('/clients/new') do
   erb(:client_form)
 end
